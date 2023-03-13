@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Test Vigenere",
+      "setup": "",
+      "run": "cd test && python vigenere_test.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 100
+    }
+  ]
+}
