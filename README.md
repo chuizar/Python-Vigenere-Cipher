@@ -1,1 +1,1 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-f4981d0f882b2a3f0472912d15f9806d57e124e0fc890972558857b51b24a6f9.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=10482037)
+This was an in class assignment to create a Vegenere Cipher where we had to read and write to a file, Convert strings to lists and lastly be able to encrypt and decrypt our strings
