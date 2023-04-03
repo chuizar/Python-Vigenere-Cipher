@@ -62,47 +62,50 @@ class Vigenere:
             plaintext = self.decrypt_string(ciphertext_list, key_list)
             self.write_file(self.plaintextfile, plaintext)
 
-
     def convert_string_to_list(self, string_to_convert):
-        character_list = []
-        # TODO this method should convert a given string
-        # into a list of given characters and return that list
-        return character_list
+
+        char_list = []
+        for char in string_to_convert:
+            char_list.append(char)
+        return char_list
 
     def make_key_list_from_keyword(self, keyword_list, text_list):
         key_list = []
-        # TODO adds the user entered keyword into a list character by character
-        # The resulting key needs to be the same length as the text being encrypted / decrypted
-        # This means the letters in the keyword have to be repeated until the key_list is populated!
-        # Use the modulo operator to make sure your current position in the text stays within
-        # the bounds of the keyword_list
+        i = 0
+        for character in text_list:
+            if character.isalnum():
+                key_list.append(keyword_list[i % len(keyword_list)])
+                i += 1
+            else:
+                key_list.append('')
         return key_list
 
     def read_file(self, filename):
-        # TODO read contents of filename and return as string
-        return ''
+        with open(filename, 'r') as file:
+            contents = file.read()
+        return contents
 
     def write_file(self, filename, contents):
-        # TODO write contents variable to filename
-        return
+        with open(filename, 'w') as file:
+            file.write(contents)
 
     def encrypt_string(self, plaintext_list, key_list):
-        # TODO encrypt plaintext using key
-        # Iterate character by character over plaintext_list,
-        # add corresponding entry in key_list to current character in plaintext_list
-        # if resulting number is greater than 255, mod by 256
-        # To get the numerical ASCII value for a character using the ord() function
-        # To get the ASCII character for a number using the chr() function
-        return ""
+        ciphertext_list = []
+        for i in range(len(plaintext_list)):
+            if plaintext_list[i].isalpha():
+                ciphertext_list.append(chr((ord(plaintext_list[i]) + ord(key_list[i])) % 256))
+            else:
+                ciphertext_list.append('')
+        ciphertext = ''.join(ciphertext_list)
+        return ciphertext
 
     def decrypt_string(self, ciphertext_list, key_list):
-        # TODO decrypt ciphertext using keyword
-        # Iterate character by character over ciphertext_list,
-        # *subtract* corresponding entry in key_list to current character in ciphertext_list
-        # if resulting number is less than 0, add 256
-        # get the numerical ASCII value for a character using the ord() function
-        # get the ASCII character for a number using the char() function
-        return ""
+        decrypted_list = []
+        for i, char in enumerate(ciphertext_list):
+            key_char = key_list[i % len(key_list)]
+            decrypted_char = chr((ord(char) - ord(key_char)) % 256)
+            decrypted_list.append(decrypted_char)
+        return ''.join(decrypted_list)
 
 
 if __name__ == '__main__':
